@@ -1,15 +1,9 @@
 package com.mustafak01.registrationandlogin.service;
 
-import com.mustafak01.registrationandlogin.model.RegistrationRequest;
-import com.mustafak01.registrationandlogin.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.stereotype.Service;
+import com.mustafak01.registrationandlogin.model.requests.RegistrationRequest;
+import org.springframework.http.ResponseEntity;
 
-@Service
-@AllArgsConstructor
-public class RegistrationService {
-    public String saveUser(RegistrationRequest registrationRequest){
-        return "Successful";
-    }
+public interface RegistrationService {
+    boolean checkUserIfExists(String username,String email);
+    ResponseEntity<String> saveUser(RegistrationRequest registrationRequest);
 }
