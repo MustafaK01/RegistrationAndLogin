@@ -1,4 +1,4 @@
-package com.mustafak01.registrationandlogin.model;
+package com.mustafak01.registrationandlogin.model.requests;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 public class RegistrationRequest {
     private final String firstName;
     private final String lastName;
+    private final String userName;
     private final String email;
     private final String password;
-
 }
