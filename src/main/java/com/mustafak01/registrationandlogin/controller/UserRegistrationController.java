@@ -1,31 +1,32 @@
 package com.mustafak01.registrationandlogin.controller;
 
-import com.mustafak01.registrationandlogin.model.RegistrationRequest;
-import com.mustafak01.registrationandlogin.model.UserModel;
-import com.mustafak01.registrationandlogin.repository.UserRepository;
+import com.mustafak01.registrationandlogin.model.requests.LoginRequest;
+import com.mustafak01.registrationandlogin.model.requests.RegistrationRequest;
+import com.mustafak01.registrationandlogin.service.LoginService;
 import com.mustafak01.registrationandlogin.service.RegistrationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.Registration;
-import java.util.SimpleTimeZone;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/registration")
+@RequestMapping("/api/auth")
 @AllArgsConstructor
 public class UserRegistrationController {
 
     private final RegistrationService registrationService;
+    private final LoginService loginService;
 
-    @PostMapping
-    public String register(@RequestBody RegistrationRequest registrationRequest){
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody RegistrationRequest registrationRequest){
         log.info(String.format("Registered %s",registrationRequest));
         return registrationService.saveUser(registrationRequest);
+    }
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest loginRequest){
+        log.info(String.format("Logged %s",loginRequest));
+        return loginService.login(loginRequest);
     }
 }
