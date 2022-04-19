@@ -1,5 +1,6 @@
-package com.mustafak01.registrationandlogin.service;
+package com.mustafak01.registrationandlogin.security;
 
+import com.mustafak01.registrationandlogin.model.UserModel;
 import com.mustafak01.registrationandlogin.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,12 +13,14 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+
     private static final String MESSAGE = "User Not Found : %s";
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.
-                findByEmail(email).
-                orElseThrow(() -> new UsernameNotFoundException(String.format(MESSAGE,email)));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserModel userModel = userRepository.findByUserName(username);
+        return UserDetailsJwt.create(userModel);
     }
+
+
 }
