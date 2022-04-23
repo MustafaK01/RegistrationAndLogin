@@ -49,7 +49,12 @@ public class TokenProviderJwt {
             return false;
         }
     }
-
+    public Long expirationDate(String token){
+        Date expirate = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token)
+                .getBody()
+                .getExpiration();
+        return expirate.getTime();
+    }
     private boolean tokenExpired(String token) {
         Date expirate = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token)
                 .getBody()
