@@ -1,19 +1,15 @@
 package com.mustafak01.registrationandlogin.security;
 
 import com.mustafak01.registrationandlogin.model.UserModel;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.lang.Long;
 
-//@Service
 public class UserDetailsJwt implements UserDetails {
 
     private Long id;
