@@ -1,7 +1,9 @@
 package com.mustafak01.registrationandlogin.controller;
 
+import com.mustafak01.registrationandlogin.model.response.AuthResponseLogin;
 import com.mustafak01.registrationandlogin.model.requests.LoginRequest;
 import com.mustafak01.registrationandlogin.model.requests.RegistrationRequest;
+import com.mustafak01.registrationandlogin.model.response.AuthResponseRegister;
 import com.mustafak01.registrationandlogin.service.LoginService;
 import com.mustafak01.registrationandlogin.service.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -20,12 +22,12 @@ public class UserRegistrationController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegistrationRequest registrationRequest){
+    public ResponseEntity<AuthResponseRegister> register(@RequestBody RegistrationRequest registrationRequest){
         log.info(String.format("Registered %s",registrationRequest));
         return registrationService.saveUser(registrationRequest);
     }
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest){
+    public AuthResponseLogin login(@RequestBody LoginRequest loginRequest){
         log.info(String.format("Logged %s",loginRequest));
         return loginService.login(loginRequest);
     }
